@@ -1,77 +1,43 @@
 @extends('app')
 
-@section('title', 'Daftar Event')
+@section('title', $event->title)
 
 @section('content')
-<div class="max-w-7xl mx-auto">
-    <h1 class="text-4xl font-extrabold text-gray-900 mb-10 text-center">
-        Daftar Event Komunitas
-    </h1>
+<div class="max-w-3xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden">
+    {{-- Cover Event --}}
+    <img src="{{ asset('storage/'.$event->cover_image) }}" 
+         class="w-full h-96 object-cover">
 
-    {{-- Jika ada event --}}
-    @if($events->count())
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            @foreach($events as $event)
-                <div class="bg-white shadow-lg rounded-2xl overflow-hidden hover:shadow-2xl transition transform hover:-translate-y-1">
-                    
-                    {{-- Cover --}}
-                    <a href="{{ route('events.show', $event->id) }}">
-                        <img src="{{ asset('storage/'.$event->cover_image) }}" 
-                             alt="{{ $event->title }}" 
-                             class="w-full h-56 object-cover">
-                    </a>
+    <div class="p-8">
+        <h1 class="text-3xl font-extrabold text-gray-900 mb-4">{{ $event->title }}</h1>
 
-                    <div class="p-6 flex flex-col h-full">
-                        {{-- Judul --}}
-                        <h2 class="text-2xl font-bold text-gray-900 mb-2">
-                            <a href="{{ route('events.show', $event->id) }}" 
-                               class="hover:text-yellow-600">
-                                {{ $event->title }}
-                            </a>
-                        </h2>
-
-                        {{-- Detail Singkat --}}
-                        <p class="text-gray-600 text-sm mb-3">
-                            <span class="font-semibold">📅</span> 
-                            {{ \Carbon\Carbon::parse($event->date)->format('d M Y') }}
-                            <br>
-                            <span class="font-semibold">📍</span> {{ $event->location }}
-                        </p>
-
-                        {{-- Deskripsi singkat --}}
-                        <p class="text-gray-700 line-clamp-3 mb-4">
-                            {{ $event->description }}
-                        </p>
-
-                        {{-- Aksi --}}
-                        <div class="mt-auto flex justify-between items-center">
-                            <a href="{{ route('events.show', $event->id) }}" 
-                               class="text-yellow-600 font-semibold hover:underline">
-                                Lihat Detail →
-                            </a>
-                            <a href="{{ route('events.edit', $event->id) }}" 
-                               class="px-3 py-1 text-sm bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                                Edit
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
+        <div class="text-gray-600 mb-4">
+            <p><span class="font-semibold">Tanggal:</span> {{ \Carbon\Carbon::parse($event->date)->format('d M Y') }}</p>
+            <p><span class="font-semibold">Lokasi:</span> {{ $event->location }}</p>
         </div>
 
-        {{-- Pagination --}}
-        <div class="mt-10">
-            {{ $events->links() }}
-        </div>
-    @else
-        <div class="text-center text-gray-600 py-20">
-            <p class="text-lg">Belum ada event yang tersedia.</p>
-            <a href="{{ route('events.create') }}" 
-               class="mt-4 inline-block px-5 py-2 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 transition">
-                + Tambah Event
+        <p class="text-gray-700 leading-relaxed">{{ $event->description }}</p>
+
+        {{-- Tombol Aksi --}}
+        <div class="mt-8 flex gap-4">
+            <a href="{{ route('home') }}" 
+               class="px-5 py-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition">
+                Kembali
             </a>
+            <a href="{{ route('events.edit', $event->id) }}" 
+               class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                Edit
+            </a>
+            <form action="{{ route('events.destroy', $event->id) }}" method="POST" 
+                  onsubmit="return confirm('Yakin ingin menghapus event ini?')">
+                @csrf
+                @method('DELETE')
+                <button type="submit" 
+                        class="px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                    Hapus
+                </button>
+            </form>
         </div>
-    @endif
+    </div>
 </div>
 @endsection
-    
