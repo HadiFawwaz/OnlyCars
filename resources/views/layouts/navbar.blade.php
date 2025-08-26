@@ -17,16 +17,24 @@
             <!-- Desktop Navigation -->
             <div class="hidden md:block">
                 <div class="ml-10 flex items-baseline space-x-8">
-                    <a href="{{ route('home') }}" class="text-slate-700 hover:text-amber-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50">
+                    <a href="{{ route('home') }}" 
+                       class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50 
+                       {{ request()->routeIs('home') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                         Home
                     </a>
-                    <a href="{{ route('events.index') }}" class="text-slate-700 hover:text-amber-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50">
+                    <a href="{{ route('events.index') }}" 
+                       class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50 
+                       {{ request()->routeIs('events.*') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                         Events
                     </a>
-                    <a href="{{ route('galeris.index') }}" class="text-slate-700 hover:text-amber-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50">
+                    <a href="{{ route('galeris.index') }}" 
+                       class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50 
+                       {{ request()->routeIs('galeris.*') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                         Gallery
                     </a>
-                    <a href="{{ route('merchandises.index') }}" class="text-slate-700 hover:text-amber-600 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50">
+                    <a href="{{ route('merchandises.index') }}" 
+                       class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 hover:bg-amber-50 
+                       {{ request()->routeIs('merchandises.*') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                         Merchandise
                     </a>
                 </div>
@@ -53,16 +61,24 @@
     <!-- Mobile Navigation -->
     <div id="mobile-menu" class="md:hidden hidden bg-white border-t border-slate-200">
         <div class="px-2 pt-2 pb-3 space-y-1">
-            <a href="{{ route('home') }}" class="text-slate-700 hover:text-amber-600 block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200">
+            <a href="{{ route('home') }}" 
+               class="block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 
+               {{ request()->routeIs('home') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                 Home
             </a>
-            <a href="{{ route('events.index') }}" class="text-slate-700 hover:text-amber-600 block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200">
+            <a href="{{ route('events.index') }}" 
+               class="block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 
+               {{ request()->routeIs('events.*') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                 Events
             </a>
-            <a href="{{ route('galeris.index') }}" class="text-slate-700 hover:text-amber-600 block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200">
+            <a href="{{ route('galeris.index') }}" 
+               class="block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 
+               {{ request()->routeIs('galeris.*') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                 Gallery
             </a>
-            <a href="{{ route('merchandises.index') }}" class="text-slate-700 hover:text-amber-600 block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200">
+            <a href="{{ route('merchandises.index') }}" 
+               class="block px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 
+               {{ request()->routeIs('merchandises.*') ? 'text-amber-600 bg-amber-50 font-semibold' : 'text-slate-700 hover:text-amber-600' }}">
                 Merchandise
             </a>
             <a href="{{ route('events.index') }}" class="bg-gradient-to-r from-amber-500 to-orange-500 text-white block px-3 py-2 rounded-lg text-base font-medium mt-4 text-center">
