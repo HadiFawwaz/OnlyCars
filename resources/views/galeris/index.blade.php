@@ -20,7 +20,7 @@
     @foreach($galeris as $galeri)
         <div class="relative group bg-white rounded-xl shadow overflow-hidden">
             <img src="{{ asset('storage/'.$galeri->image_dokumentasi) }}" 
-                 class="w-full h-40 object-cover group-hover:scale-105 transition">
+                 class="w-full h-85 object-cover group-hover:scale-105 transition">
             <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex items-center justify-center text-white text-center p-2">
                 <div>
                     <p class="font-semibold">{{ $galeri->title }}</p>

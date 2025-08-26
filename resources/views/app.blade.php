@@ -7,7 +7,7 @@
     @vite('resources/css/app.css')
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
-<body class="flex flex-col min-h-screen bg-gray-50 text-gray-900">
+<body>
 
 
     @include('layouts.navbar')
